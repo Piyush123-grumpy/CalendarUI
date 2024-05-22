@@ -1,13 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import axios from 'axios';
-import { Button, Checkbox, Label, Modal, TextInput } from "flowbite-react";
+import { Button, Label, Modal, TextInput } from "flowbite-react";
 import Popup from 'reactjs-popup';
 import 'primereact/resources/themes/lara-light-indigo/theme.css'; //theme
 import 'primereact/resources/primereact.min.css'; //core css
 import EventCard from './component/event.card'
 import { Chips } from "primereact/chips";
-import { FieldValues, useForm } from "react-hook-form";
-
 type Holiday = {
   date: string;
   localName: string;
@@ -54,7 +52,7 @@ function App() {
       title: 'Test',
       description: "lorem ipsum idor loren von mattern horn",
       start_time: "00:00",
-      event_time: '0000-00-00',
+      event_date: '0000-00-00',
       end_time: "00:00",
       participants: []
     }
@@ -153,7 +151,7 @@ function App() {
         "start_time": startDateTime,
         "end_time": endDateTime,
         'event_date': String(submitDate).slice(0, 10),
-        "participants": []
+        "participants": [] as { name: string }[]
       }
       participants.forEach((element: any) => {
         data['participants'].push({ 'name': element })
@@ -186,7 +184,7 @@ function App() {
           "start_time": startDateTime,
           "end_time": endDateTime,
           'event_date': dateConverter(submitDate),
-          "participants": []
+          "participants": [] as { name: string }[]
         }
 
         participants.forEach((element: any) => {
